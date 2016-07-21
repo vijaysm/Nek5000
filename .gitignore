@@ -1,4 +1,9 @@
 SESSION.NAME
 compiler.out
+nek-*.tar.gz
 nek5000
 *.sch
+core/benchmark/*/obj
+core/benchmark/*/*.f
+core/benchmark/*/makefile
+core/benchmark/*/*00*.h5m
