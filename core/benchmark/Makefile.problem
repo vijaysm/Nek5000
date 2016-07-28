@@ -1,6 +1,6 @@
 LDADD = 
 # For test problems that create the Physics object, add the NEK case object to link against.
-NEK_CASE_DIR    = $(SHARP_NEK_DIR)/benchmark/$(PROBLEM)
+NEK_CASE_DIR    = $(SHARP_NEK_DIR)/core/benchmark/$(PROBLEM)
 NEK_LIB_DIR     = $(NEK_CASE_DIR)/build/lib
 SHARP_NEK_LIB   = -L$(NEK_LIB_DIR) -lnek5000
 EXTERNALOBJF    = $(NEK_CASE_DIR)/build/nek/obj/$(NEK_CASE_NAME).o
