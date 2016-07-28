@@ -1,6 +1,6 @@
 LDADD = 
 # For test problems that create the Physics object, add the NEK case object to link against.
-NEK_CASE_DIR    = $(SHARP_NEK_DIR)/benchmark/$(PROBLEM)
+NEK_CASE_DIR    = $(SHARP_NEK_DIR)/core/benchmark/$(PROBLEM)
 NEK_LIB_DIR     = $(NEK_CASE_DIR)/build/lib
 SHARP_NEK_LIB   = -L$(NEK_LIB_DIR) -lnek5000
 EXTERNALOBJF    = $(NEK_CASE_DIR)/build/nek/obj/$(NEK_CASE_NAME).o
@@ -38,7 +38,7 @@ build_nek:
 	@cp -lf $(NEK_CASE_DIR)/SIZE $(NEK_CASE_DIR)/build/nek/SIZE
 	@cp -lf $(NEK_CASE_DIR)/$(NEK_CASE_NAME).usr $(NEK_CASE_DIR)/build/nek/$(NEK_CASE_NAME).usr
 	@cp -lf $(NEK_CASE_DIR)/$(NEK_CASE_NAME).rea $(NEK_CASE_DIR)/build/nek/$(NEK_CASE_NAME).rea
-	@cd $(NEK_CASE_DIR)/build/nek &&  $(SHELL) $(SHARP_NEK_DIR)/makenek $(NEK_CASE_NAME) && cd $(NEK_CASE_DIR)
+	@cd $(NEK_CASE_DIR)/build/nek &&  $(SHELL) $(SHARP_NEK_DIR)/core/makenek $(NEK_CASE_NAME) && cd $(NEK_CASE_DIR)
 	-@${MAKE} --no-print-directory lib -s -C $(NEK_CASE_DIR)/build/nek -j
 	@ln -sf $(NEK_CASE_DIR)/build/nek/libnek5000.a $(NEK_LIB_DIR)/libnek5000.a
 	@ln -sf $(NEK_CASE_DIR)/build/nek/nek5000 $(NEK_CASE_DIR)/build/bin/nek5000
