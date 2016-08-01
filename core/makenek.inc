@@ -704,6 +704,7 @@ c automatically added by makenek
 _ACEOF
 fi
 
+if [ "$IFMOAB" == "true" -o "$IFMOAB" == "yes" ]; then
 cat $CASENAME.f | grep -i "subroutine.*userq2" >/dev/null
 if [ $? -ne 0 ]; then
 cat >> $CASENAME.f << _ACEOF
@@ -983,6 +984,7 @@ c no check for error, just print something and continue
 
 #endif
 _ACEOF
+fi
 fi
 
 if [ $NOCOMPILE -eq 1 ]; then
