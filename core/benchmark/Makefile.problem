@@ -7,6 +7,7 @@ EXTERNALOBJF    = $(NEK_CASE_DIR)/build/nek/obj/$(NEK_CASE_NAME).o
 NEK_CASE_NAME   = $(PROBLEM)_nek
 NEK_LIBS        = $(EXTERNALOBJF) $(SHARP_NEK_LIB)
 LDADD   += $(SHARP_BUILD_DIR)/modules/coupe/lib/libcoupe_NEK.la $(NEK_LIBS)
+DEFAULT_DRIVER_SRCS = ../../../../../tests/drivers/driverimpl.cxx
 
 $(SHARP_BUILD_DIR)/modules/coupe/lib/libcoupe_NEK.la: 
 	@${MAKE} --no-print-directory -C $(SHARP_BUILD_DIR)/modules/coupe lib/libcoupe_NEK.la
