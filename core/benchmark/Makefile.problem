@@ -36,9 +36,9 @@ build_nek:
 	@echo " <<< Compiling/Linking NEK5000 library >>> " ;
 	@echo "     =================================     "
 	@mkdir -p $(NEK_CASE_DIR)/build/nek $(NEK_LIB_DIR) $(NEK_CASE_DIR)/build/bin
-	@cp -lf $(NEK_CASE_DIR)/SIZE $(NEK_CASE_DIR)/build/nek/SIZE
-	@cp -lf $(NEK_CASE_DIR)/$(NEK_CASE_NAME).usr $(NEK_CASE_DIR)/build/nek/$(NEK_CASE_NAME).usr
-	@cp -lf $(NEK_CASE_DIR)/$(NEK_CASE_NAME).rea $(NEK_CASE_DIR)/build/nek/$(NEK_CASE_NAME).rea
+	@ln -sf $(NEK_CASE_DIR)/SIZE $(NEK_CASE_DIR)/build/nek/SIZE
+	@ln -sf $(NEK_CASE_DIR)/$(NEK_CASE_NAME).usr $(NEK_CASE_DIR)/build/nek/$(NEK_CASE_NAME).usr
+	@ln -sf $(NEK_CASE_DIR)/$(NEK_CASE_NAME).rea $(NEK_CASE_DIR)/build/nek/$(NEK_CASE_NAME).rea
 	@cd $(NEK_CASE_DIR)/build/nek &&  $(SHELL) $(SHARP_NEK_DIR)/core/makenek $(NEK_CASE_NAME) && cd $(NEK_CASE_DIR)
 	-@${MAKE} --no-print-directory lib -s -C $(NEK_CASE_DIR)/build/nek -j
 	@ln -sf $(NEK_CASE_DIR)/build/nek/libnek5000.a $(NEK_LIB_DIR)/libnek5000.a
