@@ -17,6 +17,7 @@ MOAB_DIR=
 F77=
 CC=
 P=
+PC=
 PPPO=
 PPS=
 G=
@@ -29,10 +30,13 @@ VISIT_LFLAGS=
 
 ################################################################################
 
-lFLAGS = $(USR_LFLAGS)
+lFLAGS = $(FLIBS) $(LDFLAGS) $(USR_LFLAGS)
 
-PPS_F = $(patsubst %,$(PPPO)-D%,$(PPS))
-PPS_C = $(patsubst %,-D%,$(PPS))
+PPS_F = $(CPPFLAGS) $(patsubst %,$(PPPO)-D%,$(PPS))
+PPS_C = $(CPPFLAGS) $(patsubst %,-D%,$(PPS))
+
+P += $(FFLAGS)
+PC += $(CFLAGS)
 
 # CORE##########################################################################
 CORE = drive.o drive1.o drive2.o \
@@ -99,7 +103,7 @@ CMTCORE := drive1_cmt.o drive2_cmt.o driver3_cmt.o \
 ifeq ($(IFVISIT),true)
   VISITNEK_INCLUDES:=-I$S/3rd_party
   VISITO := visit.o 
-  lFLAGS := ${lFLAGS} $(VISIT_LFLAGS)
+  lFLAGS += $(VISIT_LFLAGS)
 endif
 
 # MOAB #########################################################################
@@ -107,7 +111,7 @@ ifeq ($(IFMOAB),true)
   MOABNEK_INCLUDES:=-I$S/3rd_party
   include $(MOAB_DIR)/lib/iMesh-Defs.inc
   MOABO := moab.o imeshutil.o imeshcutil.o
-  lFLAGS := $(IMESH_LFLAGS) $(IMESH_LIBS) ${lFLAGS} 
+  lFLAGS += $(IMESH_LFLAGS) $(IMESH_LIBS)
 endif
 
 ifeq ($(IFMPI),false)
@@ -138,10 +142,10 @@ FL2   = $(L2) $(P) $(PPS_F) -I$(CASEDIR) -I$S -I$(S2) -I$(OPT_INCDIR)
 FL3   = $(L3) $(P) $(PPS_F) -I$(CASEDIR) -I$S -I$(OPT_INCDIR)
 FL4   = $(L4) $(P) $(PPS_F) -I$(CASEDIR) -I$S -I$(OPT_INCDIR)
 
-cFL0   = $(L0) $(PPS_C) -I$J
-cFL2   = $(L2) $(PPS_C) -I$J
-cFL3   = $(L3) $(PPS_C) -I$J
-cFL4   = $(L4) $(PPS_C) -I$J
+cFL0   = $(L0) $(PC) $(PPS_C) -I$J
+cFL2   = $(L2) $(PC) $(PPS_C) -I$J
+cFL3   = $(L3) $(PC) $(PPS_C) -I$J
+cFL4   = $(L4) $(PC) $(PPS_C) -I$J
 
 ################################################################################
 all : nek5000
